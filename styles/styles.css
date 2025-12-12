@@ -1,0 +1,16 @@
+body { font-family: Arial, sans-serif; margin: 20px; color: #222; }
+h1 { margin: 0 0 8px; }
+.subtitle { color: #666; margin-bottom: 12px; }
+
+.container { max-width: 1100px; margin: 0 auto; }
+.controls { margin-bottom: 12px; }
+.controls input { padding: 6px 8px; width: 240px; }
+
+.layout { display: flex; gap: 20px; }
+.left { flex: 1 1 60%; }
+.right { flex: 0 0 360px; }
+
+.details { margin-top: 12px; padding: 10px; border: 1px solid #eee; border-radius: 6px; background: #fafafa; }
+
+.low-stock { color: #b71c1c; font-weight: bold; }
+.ok-stock { color: #2e7d32; font-weight: bold; }
