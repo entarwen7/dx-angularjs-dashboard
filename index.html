@@ -20,15 +20,36 @@
         </label>
     </div>
 
-    
+    <div class="layout">
+        <div class="left">
+            <!-- Grid DevExtreme -->
+            <div id= "grid" dx-data-grid="gridOptions" style="height: 420px"></div>
+        </div>
+
+        <div class="right">
+            <!-- Chart DevExtreme -->
+            <div dx-chart="chartOptions" style="height: 320px"></div>
+
+            <!-- Información seleccionada -->
+            <div class="details" ng-if="selected">
+                <h3>Fila seleccionada</h3>
+                <p><strong>Producto:</strong> {{selected.producto}}</p>
+                <p><strong>Categoría:</strong> {{selected.categoria}}</p>
+                <p><strong>Precio:</strong> ${{selected.precio}}</p>
+                <p><strong>Stock:</strong> {{selected.stock}}</p>
+            </div>
+        </div>
+    </div>
+
+  
 
     <!-- Librerías requeridas -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn3.devexpress.com/jslib/22.2.6/js/dx.all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/22.2.6/js/dx.all.js"></script>
 
     <!--Archivo app.js -->
-    <script src="app.js"></script>
+    <script src="src/app.js"></script>
 </body>
 
 </html>

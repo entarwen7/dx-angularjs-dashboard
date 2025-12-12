@@ -1,0 +1,12 @@
+[
+  { "id": 1, "producto": "Laptop Pro", "categoria": "Tecnología", "precio": 3500, "stock": 12 },
+  { "id": 2, "producto": "Mouse Inalámbrico", "categoria": "Accesorios", "precio": 40, "stock": 100 },
+  { "id": 3, "producto": "Teclado Mecánico", "categoria": "Tecnología", "precio": 120, "stock": 7 },
+  { "id": 4, "producto": "Monitor 24 Pulgadas", "categoria": "Tecnología", "precio": 300, "stock": 25 },
+  { "id": 5, "producto": "Auriculares Bluetooth", "categoria": "Audio", "precio": 80, "stock": 50 },
+  { "id": 6, "producto": "Micrófono USB", "categoria": "Audio", "precio": 150, "stock": 18 },
+  { "id": 7, "producto": "Silla Ergonómica", "categoria": "Muebles", "precio": 450, "stock": 5 },
+  { "id": 8, "producto": "Cámara Web HD", "categoria": "Accesorios", "precio": 90, "stock": 30 },
+  { "id": 9, "producto": "Tablet 10 Pulgadas", "categoria": "Tecnología", "precio": 600, "stock": 22 },
+  { "id": 10, "producto": "Cable HDMI", "categoria": "Accesorios", "precio": 15, "stock": 200 }
+]
