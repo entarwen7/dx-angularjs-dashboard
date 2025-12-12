@@ -61,8 +61,6 @@
                 }
             };
 
-
-          
             $http.get('src/data.json').then(function (res) {
                 $scope.items = res.data || [];
 
@@ -74,22 +72,22 @@
 
                 $timeout(function () {
                     try {
-                        var $div = $('#grid'); 
+                        var $div = $('#grid');
                         if (!$div.length) {
                             console.warn('Selector #grid no encontrado al inicializar (app.js)');
                             return;
                         }
-                       
+
                         if ($div.hasClass('dx-datagrid')) {
                             try {
-                                var inst = $div.dxDataGrid('instance'); 
+                                var inst = $div.dxDataGrid('instance');
                                 inst.option('dataSource', $scope.items);
                                 console.log('dxDataGrid actualizado con nuevos datos (app.js via $timeout)');
                             } catch (errInst) {
                                 console.warn('No se pudo obtener instancia dxDataGrid aun cuando existe la clase:', errInst);
                             }
                         } else {
-                           
+
                             try {
                                 $div.dxDataGrid($scope.gridOptions);
                                 console.log('dxDataGrid inicializado desde app.js (via $timeout)');
@@ -97,27 +95,38 @@
                                 console.error('Error inicializando dxDataGrid (primera vez):', errInit);
                             }
                         }
-
-
                     } catch (err) {
                         console.warn('Error inicializando dxDataGrid desde app.js:', err);
                     }
-                }, 50); 
+                }, 50);
             }, function (err) {
                 console.error('Error cargando src/data.json', err);
             });
 
 
             $scope.$watch('searchText', function (newVal) {
-                var instance = $('.dx-datagrid').dxDataGrid('instance');
-                if (instance) {
-                    if (newVal && newVal.length) {
-                        instance.filter(['producto', 'contains', newVal]);
-                    } else {
-                        instance.clearFilter();
+                try {
+                    var $el = $('#grid');
+                    if (!$el.length) $el = $('div[dx-data-grid]');
+
+                    if (!$el.length) return;
+                    if (!$el.hasClass('dx-datagrid')) {                        
+                        return;
                     }
+                    var instance = $el.dxDataGrid('instance');
+
+                    if (instance) {
+                        if (newVal && newVal.length) {
+                            instance.filter(['producto', 'contains', newVal]);
+                        } else {
+                            instance.clearFilter();
+                        }
+                    }
+                } catch (err) {                    
+                    console.warn('Filtro: error al acceder al dxDataGrid (se ignora):', err && err.message);
                 }
             });
+
         }]);
 })();
 
