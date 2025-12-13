@@ -37,3 +37,5 @@ Logré construir un dashboard funcional con filtrado, gráficos e interacción e
 Me enfoqué en mantener un código claro, organizado y fácil de explicar.
 Considero que el resultado cumple con los niveles solicitados  en la prueba técnica.
 
+## Demo
+https://entarwen7.github.io/dx-angularjs-dashboard
