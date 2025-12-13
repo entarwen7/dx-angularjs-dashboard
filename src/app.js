@@ -82,7 +82,7 @@
                             try {
                                 var inst = $div.dxDataGrid('instance');
                                 inst.option('dataSource', $scope.items);
-                                console.log('dxDataGrid actualizado con nuevos datos (app.js via $timeout)');
+                                
                             } catch (errInst) {
                                 console.warn('No se pudo obtener instancia dxDataGrid aun cuando existe la clase:', errInst);
                             }
@@ -90,7 +90,7 @@
 
                             try {
                                 $div.dxDataGrid($scope.gridOptions);
-                                console.log('dxDataGrid inicializado desde app.js (via $timeout)');
+                               
                             } catch (errInit) {
                                 console.error('Error inicializando dxDataGrid (primera vez):', errInit);
                             }
@@ -104,28 +104,32 @@
             });
 
 
+          
             $scope.$watch('searchText', function (newVal) {
-                try {
-                    var $el = $('#grid');
-                    if (!$el.length) $el = $('div[dx-data-grid]');
+                var $el = $('#grid');
+                if (!$el.length || !$el.hasClass('dx-datagrid')) return;
 
-                    if (!$el.length) return;
-                    if (!$el.hasClass('dx-datagrid')) {                        
-                        return;
-                    }
-                    var instance = $el.dxDataGrid('instance');
+                var instance = $el.dxDataGrid('instance');
+                if (!instance) return;
 
-                    if (instance) {
-                        if (newVal && newVal.length) {
-                            instance.filter(['producto', 'contains', newVal]);
-                        } else {
-                            instance.clearFilter();
-                        }
-                    }
-                } catch (err) {                    
-                    console.warn('Filtro: error al acceder al dxDataGrid (se ignora):', err && err.message);
+                if (newVal && newVal.length) {
+                    
+                    instance.filter(['producto', 'contains', newVal]);
+                
+                    var filtered = $scope.items.filter(function (item) {
+                        return item.producto.toLowerCase().includes(newVal.toLowerCase());
+                    });
+
+                    $scope.chartOptions.dataSource = filtered;
+
+                } else {
+
+                    // Reset
+                    instance.clearFilter();
+                    $scope.chartOptions.dataSource = $scope.items;
                 }
             });
+
 
         }]);
 })();
